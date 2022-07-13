@@ -12,6 +12,8 @@ public class CurveController : MonoBehaviour
     {
         for (float t = 0; t < 1; t += _tCoef)
         {
+            // It allows us to draw yellow and 4 spheres in gizmos position.
+
             Gizmos.color = Color.yellow;
             _gizmoPosition= GetCurvePointByT(t, _curvePoints[0].position, _curvePoints[1].position, _curvePoints[2].position, _curvePoints[3].position);
             Gizmos.DrawSphere(_gizmoPosition, 0.25f);

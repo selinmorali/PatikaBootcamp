@@ -7,7 +7,7 @@ public class MoveOnCurve : MonoBehaviour
     [SerializeField] Transform [] _bezierCurve;
     [SerializeField] float _speedCoef;
     int _runningCurveNo = 0;
-    int _tour = 0;
+    public int _tour = 0;
 
     void Start()
     {

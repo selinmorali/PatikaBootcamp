@@ -5,12 +5,14 @@ using TMPro;
 
 public class TextController : MonoBehaviour
 {
-    public TextMeshProUGUI _textChanger;
+    public TextMeshProUGUI _planetName;
+    public TextMeshProUGUI _tourCounter;
 
-    public void SetPlanetName(string name)
+
+    public void SetPlanetText(string name , string tour)
     {
         //Changes the planet name on UI Panel.
-        _textChanger = FindObjectOfType<TextMeshProUGUI>();
-        _textChanger.SetText("Planet's Name: " + name);
+        _planetName.text = "Planet's Name: " + name;
+        _tourCounter.text = "Tour Count: " + tour;
     }
 }

@@ -33,13 +33,16 @@ public class ClickController : MonoBehaviour
 
                     _clickedGameObject = hit.transform.gameObject;
 
-                    if(_clickedGameObject.name != "Sun")
+                    if (_clickedGameObject.name != "Meteor(Clone)")
                     {
-                        _panel.OpenPanel();
-                        _textChanger = GameObject.FindObjectOfType(typeof(TextController)) as TextController;
-                        _tourCount = _clickedGameObject.GetComponent<MoveOnCurve>()._tour.ToString();
-                        _textChanger.SetPlanetText(_clickedGameObject.name.ToString(), _tourCount);
-                    }    
+                        if (_clickedGameObject.name != "Sun")
+                        {
+                            _panel.OpenPanel();
+                            _textChanger = GameObject.FindObjectOfType(typeof(TextController)) as TextController;
+                            _tourCount = _clickedGameObject.GetComponent<MoveOnCurve>()._tour.ToString();
+                            _textChanger.SetPlanetText(_clickedGameObject.name.ToString(), _tourCount);
+                        }
+                    }
                 }
             }
         }

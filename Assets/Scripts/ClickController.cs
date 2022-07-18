@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ClickController : MonoBehaviour
 {
-    TextController _planetText;
+    TextController _textChanger;
+    MoveOnCurve _moveOnCurve;
     PanelController _panel;
-    GameObject _clickGameObject;
+    GameObject _clickedGameObject;
+    string _tourCount;
 
     private void Start()
     {
-        _planetText = GameObject.FindObjectOfType(typeof(TextController)) as TextController;
+        _textChanger = GameObject.FindObjectOfType(typeof(TextController)) as TextController;
         _panel = GameObject.FindObjectOfType(typeof(PanelController)) as PanelController;
     }
 
@@ -23,15 +25,24 @@ public class ClickController : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 100.0f))
+            if (Physics.Raycast(ray, out hit, 500.0f))
             {
                 if (hit.transform != null)
                 {
                     //If the ray hits a GameObject, it causes the panel to show up and change the planet name in the panel.
 
-                    _clickGameObject = hit.transform.gameObject;
-                    _panel.OpenPanel();
-                    _planetText.SetPlanetName(_clickGameObject.name.ToString());
+                    _clickedGameObject = hit.transform.gameObject;
+
+                    if (_clickedGameObject.name != "Meteor(Clone)")
+                    {
+                        if (_clickedGameObject.name != "Sun")
+                        {
+                            _panel.OpenPanel();
+                            _textChanger = GameObject.FindObjectOfType(typeof(TextController)) as TextController;
+                            _tourCount = _clickedGameObject.GetComponent<MoveOnCurve>()._tour.ToString();
+                            _textChanger.SetPlanetText(_clickedGameObject.name.ToString(), _tourCount);
+                        }
+                    }
                 }
             }
         }
